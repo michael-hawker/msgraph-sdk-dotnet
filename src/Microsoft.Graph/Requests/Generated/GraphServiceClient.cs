@@ -9,6 +9,7 @@
 
 namespace Microsoft.Graph
 {
+    using System.Net.Http;
 
     /// <summary>
     /// The type GraphServiceClient.
@@ -40,7 +41,19 @@ namespace Microsoft.Graph
             : base(baseUrl, authenticationProvider, httpProvider)
         {
         }
-    
+
+
+        /// <summary>
+        /// Instantiates a new GraphServiceClient.
+        /// </summary>
+        /// <param name="httpClient">The <see cref="HttpClient"/> to use for making requests to Microsoft Graph. Use the <see cref="GraphClientFactory"/>
+        /// to get a pre-configured HttpClient that is optimized for use with the Microsoft Graph service API. </param>
+        public GraphServiceClient(
+            HttpClient httpClient)
+            : base("https://graph.microsoft.com/v1.0", httpClient)
+        {
+        }
+
         /// <summary>
         /// Gets the GraphServiceDirectoryObjects request builder.
         /// </summary>
